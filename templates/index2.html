@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Movie Recommendation System</h1>
+
+        <!-- Movie Selection Form -->
+        <form action="/" method="POST" id="movieForm">
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="selected_genre" 
+                           value="selected_genre"> Genre
+                </label>
+            
+                <label>
+                    <input type="radio" name="selected_movie" 
+                    value="selected_movie"> Movie
+                </label>
+            
+                <label for="movie-select">Select an option:</label>
+                <select id="movie-select" name="option">
+                    {% for movie in movie_list %}
+                        <option value="{{ movie }}">{{ movie }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Get Recommendations</button>
+        </form>
+
+
+        <!-- Recommended Movies Section -->
+        {% if recommended_movie_titles %}
+            <h2 class="recommendation-heading">Recommended Movies:</h2>
+            <div class="recommendations-grid">
+                {% for i in range(recommended_movie_titles|length) %}
+                    <div class="recommendation-card">
+                        <img src="{{ recommended_movie_posters[i] }}" alt="{{ recommended_movie_titles[i] }} poster" class="movie-poster">
+                        <h5 class="movie-title">{{ recommended_movie_titles[i] }}</h5>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

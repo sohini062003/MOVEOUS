@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Movie Recommendation System</h1>
+
+        <!-- Movie Selection Form -->
+        <form action="/" method="POST" id="movieForm">
+            <div class="form-group">
+                <label for="movie-select">Select a movie:</label>
+                <select id="movie-select" name="selected_movie">
+                    {% for movie in movie_list %}
+                        <option value="{{ movie }}">{{ movie }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Get Recommendations</button>
+        </form>
+
+        <!-- Genre Selection Form -->
+        <form action="/" method="POST" id="genreForm">
+            <div class="form-group">
+                <label for="genre-select">Select a genre:</label>
+                <select id="genre-select" name="selected_genre">
+                    {% for genre_id, genre_name in genres.items() %}
+                        <option value="{{ genre_name }}">{{ genre_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="submit-button">Get Genre Recommendations</button>
+        </form>
+
+        <!-- Recommended Movies Section -->
+        {% if recommended_movie_titles %}
+            <h2 class="recommendation-heading">Recommended Movies:</h2>
+            <div class="recommendations-grid">
+                {% for i in range(recommended_movie_titles|length) %}
+                    <div class="recommendation-card">
+                        <img src="{{ recommended_movie_posters[i] }}" alt="{{ recommended_movie_titles[i] }} poster" class="movie-poster">
+                        <h5 class="movie-title">{{ recommended_movie_titles[i] }}</h5>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+<div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner text-center py-5 px-5">
+      <div class="carousel-item bg-dark active">
+       
+                <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                    <p>Front Side</p>
+                    </div>
+                    <div class="card-back">
+                    <p>Back Side</p>
+                    </div>
+                </div>
+                </div>
+            
+      </div>
+      <div class="carousel-item">
+         
+                <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                    <p>Front Side</p>
+                    </div>
+                    <div class="card-back">
+                    <p>Back Side</p>
+                    </div>
+                </div>
+                </div>
+
+      </div>
+      <div class="carousel-item">
+       
+            <div class="card">
+            <div class="card-inner">
+                <div class="card-front">
+                <p>Front Side</p>
+                </div>
+                <div class="card-back">
+                <p>Back Side</p>
+                </div>
+            </div>
+            </div>
+
+      </div>
+    </div>
